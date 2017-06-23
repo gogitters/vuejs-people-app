@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           bioVisible: false
         },
         {
-          name: "Mike",
+          name: "Peter",
           bio: "Excepteur shabby chic semiotics Marfa, quinoa try-hard polaroid pariatur banh mi selfies incididunt brunch trust fund. Ethical dolor PBR&B Tumblr. Freegan ugh you probably haven't heard of them adipisicing mustache farm-to-table. Plaid enim aliqua laboris kale chips nesciunt, velit Austin meh wayfarers selfies flannel consequat. Shabby chic Neutra YOLO mumblecore hella, cray chambray id swag minim sriracha paleo. Butcher consequat pug placeat, hoodie esse dolor excepteur literally aute umami fixie. Voluptate craft beer fashion axe nesciunt Cosby sweater, narwhal id Truffaut American Apparel kale chips quinoa gentrify aesthetic Brooklyn.",
           bioVisible: false
         }
