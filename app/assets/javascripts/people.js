@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         {
           name: "Kenny",
           bio: "Tattooed letterpress gluten-free ugh, adipisicing scenester church-key gentrify tousled gastropub pour-over Shoreditch asymmetrical lomo High Life. Mumblecore nostrud Godard 3 wolf moon quinoa forage. Next level Bushwick Schlitz, dolore cliche salvia Brooklyn minim dreamcatcher you probably haven't heard of them before they sold out YOLO. Tattooed Tumblr delectus blog photo booth. Four loko flannel irony lomo, YOLO Odd Future Bushwick magna sunt PBR&B slow-carb. Biodiesel cornhole sunt flannel non fugiat. Raw denim nostrud officia Odd Future 8-bit, PBR nesciunt four loko viral.",
-          bioVisible: false
+          bioVisible: true
         },
         {
           name: "Andy",
@@ -23,7 +23,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
           bio: "Excepteur shabby chic semiotics Marfa, quinoa try-hard polaroid pariatur banh mi selfies incididunt brunch trust fund. Ethical dolor PBR&B Tumblr. Freegan ugh you probably haven't heard of them adipisicing mustache farm-to-table. Plaid enim aliqua laboris kale chips nesciunt, velit Austin meh wayfarers selfies flannel consequat. Shabby chic Neutra YOLO mumblecore hella, cray chambray id swag minim sriracha paleo. Butcher consequat pug placeat, hoodie esse dolor excepteur literally aute umami fixie. Voluptate craft beer fashion axe nesciunt Cosby sweater, narwhal id Truffaut American Apparel kale chips quinoa gentrify aesthetic Brooklyn.",
           bioVisible: false
         }
-      ]
+      ],
+      newName: '',
+      newBio: ''
+    },
+    methods: {
+      addPerson: function() {
+        this.people.push({name: this.newName, bio: this.newBio, bioVisible: false});
+        this.newName = "";
+        this.newBio = "";
+      },
+      deletePerson: function(index) {
+        // var index = this.people.indexOf(person);
+        this.people.splice(index, 1);
+      },
+      toggleBio: function(person) {
+        // if (person.bioVisible) {
+        //   person.bioVisible = false;
+        // } else {
+        //   person.bioVisible = true;
+        // }
+        person.bioVisible = !person.bioVisible;
+      }
     }
   });
 });
