@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     data: {
       people: [],
       newName: '',
-      newBio: ''
+      newBio: '',
+      errors: []
     },
     mounted: function() {
       $.get('/api/v1/people.json', function(result) {
@@ -14,11 +15,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     },
     methods: {
       addPerson: function() {
+        this.errors = [];
         var params = { name: this.newName, bio: this.newBio };
         $.post('/api/v1/people.json', params, function(result) {
           this.people.push(result);
           this.newName = "";
           this.newBio = "";
+        }.bind(this)).fail(function(response) {
+          // console.log(response);
+          this.errors = response.responseJSON.errors;
         }.bind(this));
       },
       deletePerson: function(index) {
