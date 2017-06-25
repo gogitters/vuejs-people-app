@@ -14,9 +14,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     },
     methods: {
       addPerson: function() {
-        this.people.push({name: this.newName, bio: this.newBio, bioVisible: false});
-        this.newName = "";
-        this.newBio = "";
+        var params = { name: this.newName, bio: this.newBio };
+        $.post('/api/v1/people.json', params, function(result) {
+          this.people.push(result);
+          this.newName = "";
+          this.newBio = "";
+        }.bind(this));
       },
       deletePerson: function(index) {
         // var index = this.people.indexOf(person);
