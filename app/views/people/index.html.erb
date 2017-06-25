@@ -2,7 +2,7 @@
   <h1>{{ people.length }}</h1>
   <div v-for="person in people">
     <h2 v-on:click="toggleBio(person)">{{ person.name }}</h2>
-    <h3 v-if="person.bioVisible">{{ person.bio }}</h3>
+    <h3 v-bind:class="{hide: person.bioVisible}" class="strike">{{ person.bio }}</h3>
     <p v-on:click="deletePerson(people.indexOf(person))">Delete Person</p>
   </div>
 
