@@ -1,6 +1,9 @@
 <div id="app">
   <h1>{{ people.length }}</h1>
-  Search by name: <input v-model="nameFilter">
+  Search <input v-model="nameFilter" list="names">
+  <datalist id="names">
+    <option v-for="person in people">{{ person.name }}</option>
+  </datalist>
   <div v-for="person in people" v-if="isValidPerson(person)">
     <h2 v-on:click="toggleBio(person)">{{ person.name }}</h2>
     <h3 v-bind:class="{strike: person.bioVisible}">{{ person.bio }}</h3>

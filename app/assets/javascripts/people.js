@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         person.bioVisible = !person.bioVisible;
       },
       isValidPerson: function(person) {
-        return person.name.indexOf(this.nameFilter) !== -1;
+        return (person.name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) !== -1) || (person.bio.toLowerCase().indexOf(this.nameFilter.toLowerCase()) !== -1);
       }
     }
   });
