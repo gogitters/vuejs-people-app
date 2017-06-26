@@ -9,14 +9,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
       updateName: '',
       updateBio: '',
       errors: [],
-      nameFilter: ''
+      nameFilter: '',
+      sortedAttribute: 'name'
     },
     mounted: function() {
       $.get('/api/v1/people.json', function(result) {
         this.people = result;
       }.bind(this));
     },
+    computed: {
+      modifiedPeople: function() {
+        return this.people.sort(function(person1, person2) {
+          return person1[this.sortedAttribute].localeCompare(person2[this.sortedAttribute]);
+        }.bind(this));
+      }
+    },
     methods: {
+      setSortAttribute: function(inputAttribute) {
+        this.sortedAttribute = inputAttribute;
+      },
       addPerson: function() {
         this.errors = [];
         var params = { name: this.newName, bio: this.newBio };
