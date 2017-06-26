@@ -14,6 +14,19 @@ class Api::V1::PeopleController < ApplicationController
     end
   end
 
+  def destroy
+    person = Person.find_by(id: params[:id])
+    message = "#{person.name} was deleted"
+    person.destroy
+    render json: { message: message }
+  end
+
+  def update
+    @person = Person.find_by(id: params[:id])
+    @person.update(name: params[:name], bio: params[:bio])
+    render :show
+  end
+
   # def show
   #   @person = Person.find(params[:id])
   #   render "show.json.jbuilder"
