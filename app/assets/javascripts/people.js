@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       newBio: '',
       updateName: '',
       updateBio: '',
-      errors: []
+      errors: [],
+      nameFilter: ''
     },
     mounted: function() {
       $.get('/api/v1/people.json', function(result) {
@@ -60,6 +61,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //   person.bioVisible = true;
         // }
         person.bioVisible = !person.bioVisible;
+      },
+      isValidPerson: function(person) {
+        return person.name.indexOf(this.nameFilter) !== -1;
       }
     }
   });
