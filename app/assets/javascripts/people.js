@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       updateBio: '',
       errors: [],
       nameFilter: '',
-      sortedAttribute: 'name'
+      sortedAttribute: 'name',
+      sortAscending: true
     },
     mounted: function() {
       $.get('/api/v1/people.json', function(result) {
@@ -20,12 +21,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     computed: {
       modifiedPeople: function() {
         return this.people.sort(function(person1, person2) {
-          return person1[this.sortedAttribute].localeCompare(person2[this.sortedAttribute]);
+          if (this.sortAscending) {
+            return person1[this.sortedAttribute].localeCompare(person2[this.sortedAttribute]);
+          } else {
+            return person2[this.sortedAttribute].localeCompare(person1[this.sortedAttribute]);
+          }
         }.bind(this));
       }
     },
     methods: {
       setSortAttribute: function(inputAttribute) {
+        if (inputAttribute !== this.sortedAttribute) {
+          this.sortAscending = true;
+        } else {
+          this.sortAscending = !this.sortAscending;
+        }
         this.sortedAttribute = inputAttribute;
       },
       addPerson: function() {
