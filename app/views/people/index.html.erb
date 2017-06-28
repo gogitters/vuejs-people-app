@@ -8,14 +8,16 @@
     <button v-on:click="setSortAttribute('name')">Sort by name</button>
     <button v-on:click="setSortAttribute('bio')">Sort by bio</button>
   </div>
-  <div v-for="person in modifiedPeople" v-if="isValidPerson(person)">
-    <h2 v-on:click="toggleBio(person)">{{ person.name }}</h2>
-    <h3 v-bind:class="{strike: person.bioVisible}">{{ person.bio }}</h3>
-    <p v-on:click="deletePerson(person)">Delete Person</p>
-    <input v-model="updateName">
-    <input v-model="updateBio">
-    <button v-on:click="updatePerson(person)">Update Person</button>
-  </div>
+  <transition-group name="fade">
+    <div v-for="person in modifiedPeople" v-if="isValidPerson(person)" v-bind:key="person.id">
+      <h2 v-on:click="toggleBio(person)">{{ person.name }}</h2>
+      <h3 v-bind:class="{strike: person.bioVisible}">{{ person.bio }}</h3>
+      <p v-on:click="deletePerson(person)">Delete Person</p>
+      <input v-model="updateName">
+      <input v-model="updateBio">
+      <button v-on:click="updatePerson(person)">Update Person</button>
+    </div>
+  </transition-group>
   {{ people.length }}
 
   <ul>
